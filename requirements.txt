@@ -1,0 +1,14 @@
+langchain
+langgraph
+streamlit
+pydantic
+langchain_community
+langchain_core
+langchain_groq
+faiss-cpu
+tavily-python
+python-dotenv
+langchain_openai    
+langchain_google_genai
+langchain_huggingface
+langchain_anthropic
