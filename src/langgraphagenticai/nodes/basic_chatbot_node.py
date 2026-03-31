@@ -1,3 +1,5 @@
+from langgraphagenticai.state.state import GraphState
+
 class BasicChatbotNode:
     """Node that handles basic chatbot functionality"""
     def __init__(self, model):
