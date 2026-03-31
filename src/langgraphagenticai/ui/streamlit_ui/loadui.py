@@ -1,6 +1,6 @@
 import streamlit as st
 import os
-from src.langgraphagenticai.ui.uiconfig import UIConfig
+from langgraphagenticai.ui.uiconfig import UIConfig
 
 class LoadStreamlitUI:
     def __init__(self):
