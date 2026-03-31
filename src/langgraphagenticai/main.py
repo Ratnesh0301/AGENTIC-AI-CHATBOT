@@ -17,7 +17,7 @@ def load_langgraph_agenticai_app():
     if user_message:
         try:
             #Configure the LLMs
-            obj_llm_config = GroqLLM(user_controls_input=user_message)
+            obj_llm_config = GroqLLM(user_controls_input=ui.user_controls)
             llm = obj_llm_config.get_groq_llm()
 
             if not llm:
@@ -25,7 +25,7 @@ def load_langgraph_agenticai_app():
                 return
 
             #Initialize and setup graph based on usecase
-            usecase = user_input.get('selected_usecase')
+            usecase = ui.user_controls.get('usecase')
 
             if not usecase:
                 st.error("Please select a usecase.")
@@ -34,7 +34,7 @@ def load_langgraph_agenticai_app():
             #Graph Builder
             graph_builder = GraphBuilder(model=llm)
             try:
-                graph_builder.setup_graph(usecase)
+                graph = graph_builder.setup_graph(usecase)
                 DisplayResultsStreamlit(usecase,graph,user_message).display_results_on_ui()
             except Exception as e:
                 st.error(f"Error setting up graph: {str(e)}")

@@ -1,6 +1,6 @@
-from typing import Annotated
+from typing import Annotated, List
 from pydantic import BaseModel, Field
-from typing_extensions import TypedDict, List
+from typing_extensions import TypedDict
 from langgraph.graph.message import add_messages
 
 class GraphState(TypedDict):
