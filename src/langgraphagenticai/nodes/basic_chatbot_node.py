@@ -7,5 +7,5 @@ class BasicChatbotNode:
     
     def __call__(self, state: GraphState):
         response = self.model.invoke(state["messages"])
-        state["messages"].append(response)
-        return state
+        return {'messages':response}
+        
