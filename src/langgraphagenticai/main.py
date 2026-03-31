@@ -12,7 +12,10 @@ def load_langgraph_agenticai_app():
     ui = LoadStreamlitUI()
     ui.load_streamlit_ui()
 
-    user_message = st.chat_input("You: ")
+    if st.session_state.IsFetchButtonClicked:
+        user_message = st.session_state.time_frame
+    else:
+        user_message = st.chat_input("You: ")
 
     if user_message:
         try:

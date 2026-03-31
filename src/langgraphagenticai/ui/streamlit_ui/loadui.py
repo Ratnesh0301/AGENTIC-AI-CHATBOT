@@ -14,6 +14,8 @@ class LoadStreamlitUI:
             layout="wide",
         )
         st.header(self.config.get_page_title(), divider="blue")
+        st.session_state.IsFetchButtonClicked = False
+        st.session_state.time_frame = ""
 
         with st.sidebar:
             #Get options from sidebar
@@ -63,8 +65,8 @@ class LoadStreamlitUI:
                 else:
                     st.success("Usecase selected")
 
-                if self.user_controls['usecase'] == "Chatbot with Web":
-                    self.user_controls['TAVILY_API_KEY'] = st.session_state['TAVILY_API_KEY'] = st.text_input(
+                if self.user_controls['usecase'] == "Chatbot with Web" or self.user_controls['usecase'] == "AI News":
+                    os.environ["TAVILY_API_KEY"] = self.user_controls['TAVILY_API_KEY'] = st.session_state['TAVILY_API_KEY'] = st.text_input(
                         "Tavily API Key",
                         type="password",
                         help="Enter your Tavily API Key"
@@ -74,8 +76,19 @@ class LoadStreamlitUI:
                     if not self.user_controls['TAVILY_API_KEY']:
                         st.warning("Please enter your Tavily API Key")
                     else:
-                        os.environ["TAVILY_API_KEY"] = self.user_controls['TAVILY_API_KEY']
                         st.success("Tavily API Key validated")
 
-                
+                if self.user_controls['usecase'] == "AI News":
+                    st.subheader("AI News Explorer")
+                    with st.sidebar:
+                        st.subheader("AI News Configuration")
+                        time_frame = st.selectbox(
+                            "Select Time Frame",
+                            ["Daily", "Monthly", "Weekly"],
+                            index=0,
+                            help="Choose the Time Frame for AI News"
+                        )
+                    if st.button("Fetch Latest AI News", use_container_width=True):
+                        st.session_state.IsFetchButtonClicked = True
+                        st.session_state.timeframe = time_frame
     
