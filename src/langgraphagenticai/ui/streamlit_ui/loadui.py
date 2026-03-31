@@ -63,4 +63,19 @@ class LoadStreamlitUI:
                 else:
                     st.success("Usecase selected")
 
+                if self.user_controls['usecase'] == "Chatbot with Web":
+                    self.user_controls['TAVILY_API_KEY'] = st.session_state['TAVILY_API_KEY'] = st.text_input(
+                        "Tavily API Key",
+                        type="password",
+                        help="Enter your Tavily API Key"
+                    )
+
+                    #Validate TAVILY API KEY
+                    if not self.user_controls['TAVILY_API_KEY']:
+                        st.warning("Please enter your Tavily API Key")
+                    else:
+                        os.environ["TAVILY_API_KEY"] = self.user_controls['TAVILY_API_KEY']
+                        st.success("Tavily API Key validated")
+
+                
     
